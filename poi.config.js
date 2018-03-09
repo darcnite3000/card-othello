@@ -1,4 +1,5 @@
-module.exports = (options, req) => ({
+module.exports = () => ({
   entry: './src/index.jsx',
-  homepage: '/card-othello/'
+  homepage: '/card-othello/',
+  presets: [require('poi-preset-react')()]
 })
