@@ -1,0 +1,2 @@
+webpackJsonp([1],{4:function(e,n,t){e.exports=t(5)},5:function(e,n,t){"use strict";function r(){return h("h1",["Card Othello"])}Object.defineProperty(n,"__esModule",{value:!0});var o=t(1),c=(t.n(o),t(7));t.n(c);Object(c.render)(h(r),document.getElementById("app"))}},[4]);
+//# sourceMappingURL=client.97e70c68.js.map
