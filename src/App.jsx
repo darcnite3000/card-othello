@@ -35,6 +35,10 @@ function App() {
   return (
     <Fragment>
       <h1>Card Othello</h1>
+      <p>
+        Cards have values from 2 - 14 with their attack pips being all adding up
+        to the value
+      </p>
       {suits.map(suit => (
         <div key={suit} className="card-list" style={{ display: 'flex' }}>
           {values.map(value => (
