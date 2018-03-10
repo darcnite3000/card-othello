@@ -1,0 +1,102 @@
+.card {
+  width: 50px;
+  height: 80px;
+  border-radius: 5px;
+  border: 2px solid;
+  background-color: olive;
+  position: relative;
+  font-family: 'Concert One';
+  & .value,
+  & .pips {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  & .value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  & .pips {
+    display: grid;
+    grid-template-areas:
+      'tl tm tr'
+      'ml . mr'
+      'bl bm br';
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    & .pip {
+      display: flex;
+      padding: 2px;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.7em;
+    }
+    & .pip:nth-child(1) {
+      justify-content: flex-start;
+      align-items: flex-start;
+      grid-area: tl;
+    }
+    & .pip:nth-child(2) {
+      align-items: flex-start;
+      grid-area: tm;
+    }
+    & .pip:nth-child(3) {
+      justify-content: flex-end;
+      align-items: flex-start;
+      grid-area: tr;
+    }
+    & .pip:nth-child(4) {
+      justify-content: flex-start;
+      grid-area: ml;
+    }
+    & .pip:nth-child(5) {
+      justify-content: flex-end;
+      grid-area: mr;
+    }
+    & .pip:nth-child(6) {
+      justify-content: flex-start;
+      align-items: flex-end;
+      grid-area: bl;
+    }
+    & .pip:nth-child(7) {
+      align-items: flex-end;
+      grid-area: bm;
+    }
+    & .pip:nth-child(8) {
+      justify-content: flex-end;
+      align-items: flex-end;
+      grid-area: br;
+    }
+  }
+}
+.card-suit-0,
+.card-suit-2 {
+  border-color: red;
+}
+.card-suit-1,
+.card-suit-3 {
+  border-color: black;
+}
+.card-player-0 {
+  background-color: blue;
+  color: white;
+}
+.card-player-1 {
+  background-color: pink;
+  color: black;
+}
+.card-status-strong {
+  & .pips,
+  & .value {
+    font-weight: bold;
+  }
+}
+.card-status-weak {
+  & .pips,
+  & .value {
+    font-style: italic;
+  }
+}
