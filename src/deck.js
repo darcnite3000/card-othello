@@ -38,6 +38,7 @@ export function randomCard(
     player,
     suit,
     value,
+    status: 0,
     pips: getRandomPips(value)
   }
 }
@@ -54,9 +55,12 @@ export class Deck {
   get discardPile() {
     return [...this._discard]
   }
+  _cleanCard(card) {
+    return { ...card, status: 0, player: this.player }
+  }
   _buildDeck(deck = []) {
     this._deck = deck.length
-      ? deck.map(card => ({ ...card, player: this.player }))
+      ? deck.map(this._cleanCard)
       : suits.reduce((cards, suit) => [
           ...cards,
           ...values.map(value => ({
@@ -64,6 +68,7 @@ export class Deck {
             value,
             suit,
             player: this.player,
+            status: 0,
             pips: getRandomPips(value)
           }))
         ])
@@ -96,7 +101,7 @@ export class Deck {
   returnCards(cards = [], pos = getRandomInt(0, this._deck.length - 1)) {
     this._deck = [
       ...this._deck.slice(0, pos),
-      ...cards,
+      ...cards.map(this._cleanCard),
       ...this._deck.slice(pos)
     ]
   }
@@ -105,10 +110,7 @@ export class Deck {
     return this
   }
   discardCards(cards = []) {
-    this._discard = [
-      ...cards.map(card => ({ ...card, player: this.player })),
-      ...this._discard
-    ]
+    this._discard = [...cards.map(this._cleanCard), ...this._discard]
   }
   dealHand(size = 1) {
     let hand = []
