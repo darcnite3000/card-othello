@@ -17,6 +17,9 @@ function App() {
   return (
     <Fragment>
       <h1>Card Othello</h1>
+      <a href={'https://github.com/darcnite3000/card-othello'}>
+        Source on GitHub
+      </a>
       <p>
         Cards have values from 2 - 14 with their attack pips being all adding up
         to the value
