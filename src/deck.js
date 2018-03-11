@@ -55,7 +55,7 @@ export class Deck {
   get discardPile() {
     return [...this._discard]
   }
-  _cleanCard(card) {
+  _cleanCard = card => {
     return { ...card, status: 0, player: this.player }
   }
   _buildDeck(deck = []) {
