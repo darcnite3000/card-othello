@@ -34,7 +34,8 @@ function App() {
         <Card {...card} style={{ margin: '5px' }} />
         <Card {...cardReversePips} style={{ margin: '5px' }} />
       </div>
-      <h2>Decks Before Deal</h2>
+      <h2>Hand Deal Examples</h2>
+      <h3>Decks Before Deal</h3>
       <h4>Player 1 Deck</h4>
       <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap' }}>
         {prePlayer1Deck.cards.map(card => (
@@ -47,7 +48,7 @@ function App() {
           <Card key={card.id} {...card} style={{ margin: '5px' }} />
         ))}
       </div>
-      <h2>Hand Deal Examples</h2>
+      <h3>Hands</h3>
       {hands.map((hand, i) => (
         <div key={i} className="card-list" style={{ display: 'flex' }}>
           {hand.map(card => (
@@ -55,7 +56,7 @@ function App() {
           ))}
         </div>
       ))}
-      <h2>Decks After Deal</h2>
+      <h3>Decks After Deal</h3>
       <h4>Player 1 Deck</h4>
       <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap' }}>
         {player1Deck.cards.map(card => (
