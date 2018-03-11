@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import Card from './Card'
+import { Card } from './Card'
+import { Board, buildGrid } from './Board'
 import { Deck, randomCard } from './deck'
 
 function App() {
@@ -9,11 +10,14 @@ function App() {
   const player2Deck = new Deck(1, prePlayer2Deck.cards)
   const card = randomCard(0)
   const cardReversePips = { ...card, pips: [...card.pips].reverse() }
+  const grid = buildGrid()
   const hands = []
   for (let i = 0; i < 2; i++) {
     hands.push(player1Deck.dealHand(7))
     hands.push(player2Deck.dealHand(7))
   }
+  grid[2][2].card = hands[0][0]
+  console.log(grid)
   return (
     <Fragment>
       <h1>Card Othello</h1>
@@ -74,6 +78,8 @@ function App() {
             <Card key={card.id} {...card} style={{ margin: '5px' }} />
           ))}
       </div>
+      <h2>Board Tests</h2>
+      <Board grid={grid} />
     </Fragment>
   )
 }
