@@ -8,6 +8,7 @@ import Spade from './Spade'
 const SUITS = [Diamond, Club, Heart, Spade]
 const faceCard = {
   14: 'A',
+  10: 'T',
   11: 'J',
   12: 'Q',
   13: 'K'
