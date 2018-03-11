@@ -1,24 +1,17 @@
 import React from 'react'
 import './card.css'
-import Heart from './Heart'
-import Club from './Club'
-import Diamond from './Diamond'
-import Spade from './Spade'
+import { cardInitial, suitFace, maxValue } from './suits'
 
-const SUITS = [Diamond, Club, Heart, Spade]
-const cardInitial = {
-  14: 'A',
-  10: 'T',
-  11: 'J',
-  12: 'Q',
-  13: 'K'
-}
 const defaultPips = [0, 0, 0, 0, 0, 0, 0, 0]
 const defaultSuit = 0
 const defaultValue = 1
 const defaultPlayer = 0
 
-function statusEffect(pip = 0, status = 0, { max = 14, min = 0 } = {}) {
+export function statusEffect(
+  pip = 0,
+  status = 0,
+  { max = maxValue, min = 0 } = {}
+) {
   if (pip) {
     const newPip = pip + status
     return newPip < min ? min : newPip > max ? max : newPip
@@ -29,7 +22,7 @@ function faceValue(value) {
   return cardInitial[value] || value
 }
 
-const Card = ({
+export const Card = ({
   player = defaultPlayer,
   value = defaultValue,
   pips = defaultPips,
@@ -37,7 +30,7 @@ const Card = ({
   status = 0,
   style
 }) => {
-  const CardSuit = SUITS[suit]
+  const CardSuit = suitFace[suit]
   return (
     <div
       className={`card card-player-${player} card-suit-${suit} card-value-${value} card-status-${
@@ -61,5 +54,3 @@ const Card = ({
     </div>
   )
 }
-
-export default Card

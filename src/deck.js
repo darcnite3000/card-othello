@@ -1,5 +1,4 @@
-export const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-export const suits = [0, 1, 2, 3]
+import { suits, values, minValue, maxValue } from './suits'
 
 function getRandomInt(min, max) {
   min = Math.ceil(min)
@@ -7,7 +6,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
-function getRandomPips(value) {
+export function getRandomPips(value) {
   const attacks =
     value <= 4
       ? getRandomInt(Math.floor(value / 2) + 1, value)
@@ -30,15 +29,18 @@ function getRandomPips(value) {
 
 export function randomCard(
   player = 0,
-  { value = getRandomInt(2, 14), suit = getRandomInt(0, 3) } = {}
+  {
+    value = getRandomInt(minValue, maxValue),
+    suit = getRandomInt(0, suits.length)
+  } = {}
 ) {
-  if (value < 2 || value > 14) value = getRandomInt(2, 14)
-  if (suit < 0 || suit > 3) suit = getRandomInt(0, 3)
+  if (value < minValue || value > maxValue)
+    value = getRandomInt(minValue, maxValue)
+  if (suit < 0 || suit > suits.length) suit = getRandomInt(0, suits.length)
   return {
     player,
     suit,
     value,
-    status: 0,
     pips: getRandomPips(value)
   }
 }
@@ -56,7 +58,7 @@ export class Deck {
     return [...this._discard]
   }
   _cleanCard = card => {
-    return { ...card, status: 0, player: this.player }
+    return { ...card, player: this.player }
   }
   _buildDeck(deck = []) {
     this._deck = deck.length
@@ -68,7 +70,6 @@ export class Deck {
             value,
             suit,
             player: this.player,
-            status: 0,
             pips: getRandomPips(value)
           }))
         ])
