@@ -28,6 +28,20 @@ function getRandomPips(value) {
   return pips
 }
 
+export function randomCard(
+  player = 0,
+  { value = getRandomInt(2, 14), suit = getRandomInt(0, 3) } = {}
+) {
+  if (value < 2 || value > 14) value = getRandomInt(2, 14)
+  if (suit < 0 || suit > 3) suit = getRandomInt(0, 3)
+  return {
+    player,
+    suit,
+    value,
+    pips: getRandomPips(value)
+  }
+}
+
 export class Deck {
   constructor(player = 0, deck = []) {
     this.player = player

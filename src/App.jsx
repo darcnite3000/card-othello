@@ -1,12 +1,16 @@
 import React, { Fragment } from 'react'
 import Card from './Card'
-import { Deck } from './deck'
+import { Deck, randomCard } from './deck'
 
 function App() {
-  const deck = new Deck().shuffle()
+  const player1Deck = new Deck(0).shuffle()
+  const player2Deck = new Deck(1).shuffle()
+  console.log(randomCard())
+  console.log(randomCard(1, { value: 2, suit: 0 }))
   const hands = []
-  for (let i = 0; i < 4; i++) {
-    hands.push(deck.dealHand(4))
+  for (let i = 0; i < 2; i++) {
+    hands.push(player1Deck.dealHand(7))
+    hands.push(player2Deck.dealHand(7))
   }
   return (
     <Fragment>
