@@ -6,7 +6,7 @@ import Diamond from './Diamond'
 import Spade from './Spade'
 
 const SUITS = [Diamond, Club, Heart, Spade]
-const faceCard = {
+const cardInitial = {
   14: 'A',
   10: 'T',
   11: 'J',
@@ -17,6 +17,18 @@ const defaultPips = [0, 0, 0, 0, 0, 0, 0, 0]
 const defaultSuit = 0
 const defaultValue = 1
 const defaultPlayer = 0
+
+function statusEffect(pip = 0, status = 0, { max = 14, min = 0 } = {}) {
+  if (pip) {
+    const newPip = pip + status
+    return newPip < min ? min : newPip > max ? max : newPip
+  }
+  return pip
+}
+function faceValue(value) {
+  return cardInitial[value] || value
+}
+
 const Card = ({
   player = defaultPlayer,
   value = defaultValue,
@@ -26,7 +38,6 @@ const Card = ({
   style
 }) => {
   const CardSuit = SUITS[suit]
-  const face = faceCard[value] || value
   return (
     <div
       className={`card card-player-${player} card-suit-${suit} card-value-${value} card-status-${
@@ -35,14 +46,14 @@ const Card = ({
       style={style}
     >
       <div className="value">
-        <CardSuit value={face} />
+        <CardSuit value={faceValue(value)} />
       </div>
       <div className="pips">
         {pips.map((pip, i) => {
-          if (pip) pip = pip + status < 0 ? 0 : pip + status
+          pip = statusEffect(pip, status)
           return (
             <div key={i} className="pip">
-              {pip ? faceCard[pip] || pip : null}
+              {pip ? faceValue(pip) : null}
             </div>
           )
         })}
