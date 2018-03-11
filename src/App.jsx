@@ -3,8 +3,10 @@ import Card from './Card'
 import { Deck, randomCard } from './deck'
 
 function App() {
-  const player1Deck = new Deck(0).shuffle()
-  const player2Deck = new Deck(1).shuffle()
+  const prePlayer1Deck = new Deck(0).shuffle()
+  const prePlayer2Deck = new Deck(1).shuffle()
+  const player1Deck = new Deck(0, prePlayer1Deck.cards)
+  const player2Deck = new Deck(1, prePlayer2Deck.cards)
   const card = randomCard(0)
   const cardReversePips = { ...card, pips: [...card.pips].reverse() }
   const hands = []
@@ -32,6 +34,19 @@ function App() {
         <Card {...card} style={{ margin: '5px' }} />
         <Card {...cardReversePips} style={{ margin: '5px' }} />
       </div>
+      <h2>Decks Before Deal</h2>
+      <h4>Player 1 Deck</h4>
+      <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {prePlayer1Deck.cards.map(card => (
+          <Card key={card.id} {...card} style={{ margin: '5px' }} />
+        ))}
+      </div>
+      <h4>Player 2 Deck</h4>
+      <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {prePlayer2Deck.cards.map(card => (
+          <Card key={card.id} {...card} style={{ margin: '5px' }} />
+        ))}
+      </div>
       <h2>Hand Deal Examples</h2>
       {hands.map((hand, i) => (
         <div key={i} className="card-list" style={{ display: 'flex' }}>
@@ -40,6 +55,21 @@ function App() {
           ))}
         </div>
       ))}
+      <h2>Decks After Deal</h2>
+      <h4>Player 1 Deck</h4>
+      <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {player1Deck.cards.map(card => (
+          <Card key={card.id} {...card} style={{ margin: '5px' }} />
+        ))}
+      </div>
+      <h4>Player 2 Deck + sorted</h4>
+      <div className="card-list" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {player2Deck
+          .sort()
+          .cards.map(card => (
+            <Card key={card.id} {...card} style={{ margin: '5px' }} />
+          ))}
+      </div>
     </Fragment>
   )
 }
