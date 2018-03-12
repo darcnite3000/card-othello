@@ -1,23 +1,12 @@
 import React from 'react'
 import './card.css'
-import { cardInitial, suitFace, maxValue } from './suits'
+import { cardInitial, suitFace, statusEffect } from './suits'
 
 const defaultPips = [0, 0, 0, 0, 0, 0, 0, 0]
 const defaultSuit = 0
 const defaultValue = 1
 const defaultPlayer = 0
 
-export function statusEffect(
-  pip = 0,
-  status = 0,
-  { max = maxValue, min = 0 } = {}
-) {
-  if (pip) {
-    const newPip = pip + status
-    return newPip < min ? min : newPip > max ? max : newPip
-  }
-  return pip
-}
 function faceValue(value) {
   return cardInitial[value] || value
 }

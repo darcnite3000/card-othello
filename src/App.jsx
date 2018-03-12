@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Card } from './Card'
 import { Board, buildGrid } from './Board'
 import { Deck, randomCard } from './deck'
+import { testGridCell } from './suits'
 import './app.css'
 
 function App() {
@@ -19,9 +20,10 @@ function App() {
   }
   grid[0][0].locked = true
   grid[0][1].suit = 0
+  grid[2][2].suit = 1
   grid[2][2].card = hands[0][0]
   grid[1][2].card = hands[1][0]
-  console.log(grid)
+  const flips = testGridCell(grid)({ x: 2, y: 1 })
   return (
     <Fragment>
       <h1>Card Othello</h1>
@@ -84,6 +86,10 @@ function App() {
       </div>
       <h2>Board Tests</h2>
       <Board grid={grid} />
+      <p>Card Placed at 2,1 will flip:</p>
+      <code>
+        <pre>{JSON.stringify(flips, null, 2)}</pre>
+      </code>
     </Fragment>
   )
 }
