@@ -17,6 +17,7 @@ function App() {
     hands.push(player2Deck.dealHand(7))
   }
   grid[2][2].card = hands[0][0]
+  grid[1][2].card = hands[1][0]
   console.log(grid)
   return (
     <Fragment>
