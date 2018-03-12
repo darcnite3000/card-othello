@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from './Card'
 import { suitFace } from './suits'
+import './cell.css'
 
 function getStatus(cellSuit, cardSuit) {
   return cellSuit === -1 ? 0 : cellSuit === cardSuit ? 1 : -1

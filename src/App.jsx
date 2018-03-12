@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Card } from './Card'
 import { Board, buildGrid } from './Board'
 import { Deck, randomCard } from './deck'
+import './app.css'
 
 function App() {
   const prePlayer1Deck = new Deck(0).shuffle()
@@ -16,6 +17,8 @@ function App() {
     hands.push(player1Deck.dealHand(7))
     hands.push(player2Deck.dealHand(7))
   }
+  grid[0][0].locked = true
+  grid[0][1].suit = 0
   grid[2][2].card = hands[0][0]
   grid[1][2].card = hands[1][0]
   console.log(grid)

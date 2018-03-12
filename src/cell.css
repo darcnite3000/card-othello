@@ -1,0 +1,41 @@
+.cell {
+  width: 50px;
+  height: 80px;
+  border-radius: 5px;
+  margin: 1px;
+  background-color: #eeeeee;
+  position: relative;
+  font-family: 'Concert One';
+  & .cell-base,
+  & .cell-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  & .cell-base {
+    border: 2px solid;
+    border-radius: 5px;
+  }
+}
+.cell-locked {
+  & .cell-base {
+    background-color: #666666;
+  }
+}
+.cell-suit-0,
+.cell-suit-2 {
+  & .cell-base {
+    border-color: red;
+  }
+}
+.cell-suit-1,
+.cell-suit-3 {
+  & .cell-base {
+    border-color: black;
+  }
+}
