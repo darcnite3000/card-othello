@@ -64,16 +64,19 @@ export class Deck {
   _buildDeck(deck = []) {
     this._deck = deck.length
       ? deck.map(this._cleanCard)
-      : suits.reduce((cards, suit) => [
-          ...cards,
-          ...values.map(value => ({
-            id: `${suit}-${value}`,
-            value,
-            suit,
-            player: this.player,
-            pips: getRandomPips(value)
-          }))
-        ])
+      : suits.reduce(
+          (cards, suit) => [
+            ...cards,
+            ...values.map(value => ({
+              id: `${suit}-${value}`,
+              value,
+              suit,
+              player: this.player,
+              pips: getRandomPips(value)
+            }))
+          ],
+          []
+        )
     return this
   }
   sort(addDiscard = false) {
