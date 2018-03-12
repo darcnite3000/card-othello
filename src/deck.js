@@ -1,10 +1,5 @@
 import { suits, values, minValue, maxValue } from './suits'
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max + 1)
-  return Math.floor(Math.random() * (max - min)) + min
-}
+import { getRandomInt } from './utils'
 
 export function getRandomPips(value) {
   const attacks =

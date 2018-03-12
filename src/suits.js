@@ -1,3 +1,4 @@
+import { range } from './utils'
 import Heart from './Heart'
 import Club from './Club'
 import Diamond from './Diamond'
@@ -10,14 +11,6 @@ export const cardInitial = {
   11: 'J',
   12: 'Q',
   13: 'K'
-}
-
-function range(min = 0, max = 1) {
-  let rangeValues = []
-  for (let i = min; i <= max; i++) {
-    rangeValues.push(i)
-  }
-  return rangeValues
 }
 
 export const minValue = 2
