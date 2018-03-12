@@ -10,8 +10,10 @@ const Heart = ({
   ...rest
 }) => (
   <svg
+    className="suit suit-heart"
     width={width}
     height={height}
+    preserveAspectRatio="xMidYMin"
     viewBox="0 0 40 40"
     fill={stroke}
     stroke={stroke}

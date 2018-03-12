@@ -10,8 +10,10 @@ const Diamond = ({
   ...rest
 }) => (
   <svg
+    className="suit suit-diamond"
     width={width}
     height={height}
+    preserveAspectRatio="xMidYMin"
     viewBox="0 0 40 40"
     fill={stroke}
     stroke={stroke}

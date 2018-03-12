@@ -10,8 +10,10 @@ const Club = ({
   ...rest
 }) => (
   <svg
+    className="suit suit-club"
     width={width}
     height={height}
+    preserveAspectRatio="xMidYMin"
     viewBox="0 0 40 40"
     fill={stroke}
     stroke={stroke}

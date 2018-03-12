@@ -14,12 +14,17 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
   & .cell-base {
     border: 2px solid;
     border-radius: 5px;
+    & .suit {
+      margin: 2%;
+      width: 40%;
+      height: 40%;
+    }
   }
 }
 .cell-locked {

@@ -10,8 +10,10 @@ const Spade = ({
   ...rest
 }) => (
   <svg
+    className="suit suit-spade"
     width={width}
     height={height}
+    preserveAspectRatio="xMidYMin"
     viewBox="0 0 40 40"
     fill={stroke}
     stroke={stroke}
