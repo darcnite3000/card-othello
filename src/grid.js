@@ -1,24 +1,71 @@
-import { maxValue } from './suits'
+import { maxValue, suits } from './suits'
+import { getRandomInt } from './utils'
 
-export function buildGrid(
+const pipRel = [
+  { dx: -1, dy: -1 },
+  { dx: 0, dy: -1 },
+  { dx: 1, dy: -1 },
+  { dx: -1, dy: 0 },
+  { dx: 1, dy: 0 },
+  { dx: -1, dy: 1 },
+  { dx: 0, dy: 1 },
+  { dx: 1, dy: 1 }
+]
+
+export const getGridCell = (grid = [[]]) => ({ x = 0, y = 0 }) =>
+  grid[y][x] || {}
+export const getGridRandomCell = (grid = [[{}]]) => {
+  const maxY = grid.length - 1
+  const maxX = grid[0].length - 1
+  const getCell = getGridCell(grid)
+  return () => getCell({ x: getRandomInt(0, maxY), y: getRandomInt(0, maxX) })
+}
+
+export function addLocked(grid, count = 0) {
+  const randCell = getGridRandomCell(grid)
+  for (let i = 0; i < count; i++) {
+    let cell = randCell()
+    while (!cell.locked) cell = randCell()
+    cell.locked = true
+  }
+  return [...grid]
+}
+
+export function addSuited(grid, count = 0) {
+  const randCell = getGridRandomCell(grid)
+  for (let i = 0; i < count; i++) {
+    let cell = randCell()
+    while (cell.suit !== -1) cell = randCell()
+    cell.suit = suits[getRandomInt(0, suits.length - 1)]
+  }
+  return [...grid]
+}
+
+export function buildGrid({
   width = 3,
   height = 3,
-  defaultCell = { suit: -1, card: null, locked: false }
-) {
+  defaultCell = { suit: -1, card: null, locked: false },
+  locked = 0,
+  suited = 0
+}) {
   let grid = []
   for (let y = 0; y < height; y++) {
     let row = []
     for (let x = 0; x < width; x++) {
-      row.push({ ...defaultCell })
+      row.push({
+        ...defaultCell
+      })
     }
     grid.push(row)
   }
+  grid = addSuited(addLocked(grid, locked), suited)
   return grid
 }
 
 export function getStatus(cellSuit, cardSuit) {
   return cellSuit === -1 ? 0 : cellSuit === cardSuit ? 1 : -1
 }
+
 export function statusEffect(
   pip = 0,
   status = 0,
@@ -31,17 +78,6 @@ export function statusEffect(
   return pip
 }
 
-export const getGridCell = grid => ({ x = 0, y = 0 }) => grid[y][x] || {}
-const pipRel = [
-  { x: -1, y: -1 },
-  { x: 0, y: -1 },
-  { x: 1, y: -1 },
-  { x: -1, y: 0 },
-  { x: 1, y: 0 },
-  { x: -1, y: 1 },
-  { x: 0, y: 1 },
-  { x: 1, y: 1 }
-]
 export const testGridCell = grid => {
   const getCell = getGridCell(grid)
   return ({ x = 0, y = 0 }) => {
@@ -51,7 +87,7 @@ export const testGridCell = grid => {
       const status = getStatus(suit, card.suit)
       card.pips.map(pip => statusEffect(pip, status)).forEach((pip, i) => {
         if (pip) {
-          const { x: dx, y: dy } = pipRel[i]
+          const { dx, dy } = pipRel[i]
           const cXY = { x: x + dx, y: y + dy }
           const { card: cCard, suit: cSuit } = getCell(cXY)
           if (cCard && cCard.player !== card.player) {
