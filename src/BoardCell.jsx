@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from './Card'
-import { suitFace, getStatus } from './suits'
+import { suitFace } from './suits'
+import { getStatus } from './grid'
 import './cell.css'
 
 const LockedCell = () => <div className="cell-base-locked" />

@@ -1,6 +1,7 @@
 import React from 'react'
 import './card.css'
-import { cardInitial, suitFace, statusEffect } from './suits'
+import { cardInitial, suitFace } from './suits'
+import { statusEffect } from './grid'
 
 const defaultPips = [0, 0, 0, 0, 0, 0, 0, 0]
 const defaultSuit = 0

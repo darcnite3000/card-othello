@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import { Card } from './Card'
-import { Board, buildGrid } from './Board'
+import { Board } from './Board'
 import { Deck, randomCard } from './deck'
-import { testGridCell } from './suits'
+import { testGridCell, buildGrid } from './grid'
 import './app.css'
 
 function App() {
