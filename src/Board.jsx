@@ -4,7 +4,7 @@ import BoardCell from './BoardCell'
 export function buildGrid(
   width = 3,
   height = 3,
-  defaultCell = { suit: -1, card: null }
+  defaultCell = { suit: -1, card: null, locked: false }
 ) {
   let grid = []
   for (let y = 0; y < height; y++) {
