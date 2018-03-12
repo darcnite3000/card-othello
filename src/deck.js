@@ -38,6 +38,7 @@ export function randomCard(
     value = getRandomInt(minValue, maxValue)
   if (suit < 0 || suit > suits.length) suit = getRandomInt(0, suits.length)
   return {
+    owner: player,
     player,
     suit,
     value,
@@ -58,7 +59,7 @@ export class Deck {
     return [...this._discard]
   }
   _cleanCard = card => {
-    return { ...card, player: this.player }
+    return { ...card, owner: this.player, player: this.player }
   }
   _buildDeck(deck = []) {
     this._deck = deck.length
