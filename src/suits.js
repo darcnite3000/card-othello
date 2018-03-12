@@ -62,8 +62,7 @@ export const testGridCell = grid => {
           const { x: dx, y: dy } = pipRel[i]
           const cXY = { x: x + dx, y: y + dy }
           const { card: cCard, suit: cSuit } = getCell(cXY)
-          if (cCard) {
-            console.log(cCard)
+          if (cCard && cCard.player !== card.player) {
             const cStatus = getStatus(cSuit, cCard.suit)
             const compPips = [...cCard.pips].reverse()
             if (statusEffect(compPips[i], cStatus) < pip) {
