@@ -31,12 +31,12 @@ export function randomCard(
   player = 0,
   {
     value = getRandomInt(minValue, maxValue),
-    suit = getRandomInt(0, suits.length)
+    suit = getRandomInt(0, suits.length - 1)
   } = {}
 ) {
   if (value < minValue || value > maxValue)
     value = getRandomInt(minValue, maxValue)
-  if (suit < 0 || suit > suits.length) suit = getRandomInt(0, suits.length)
+  if (suit < 0 || suit >= suits.length) suit = getRandomInt(0, suits.length)
   return {
     owner: player,
     player,
