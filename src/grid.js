@@ -12,6 +12,30 @@ const pipRel = [
   { dx: 1, dy: 1 }
 ]
 
+export const countGridLocked = (grid = [[]]) => {
+  return grid.reduce(
+    (count, row) =>
+      count +
+      row.reduce((count, { locked }) => (locked ? count + 1 : count), 0),
+    0
+  )
+}
+export const countGridSuited = (grid = [[]]) => {
+  return grid.reduce(
+    (count, row) =>
+      count +
+      row.reduce((count, { suit }) => (suit !== -1 ? count + 1 : count), 0),
+    0
+  )
+}
+export const countGridCards = (grid = [[]]) => {
+  return grid.reduce(
+    (count, row) =>
+      count + row.reduce((count, { card }) => (card ? count + 1 : count), 0),
+    0
+  )
+}
+
 export const getGridCell = (grid = [[]]) => ({ x = 0, y = 0 }) =>
   grid[y][x] || {}
 export const getGridRandomCell = (grid = [[{}]]) => {
@@ -23,22 +47,32 @@ export const getGridRandomCell = (grid = [[{}]]) => {
 
 export function addLocked(grid, count = 0) {
   const randCell = getGridRandomCell(grid)
+  const locked = countGridLocked(grid)
+  const cards = countGridCards(grid)
+  const cells = grid.length * grid[0].length
+  const freeCells = cells - locked - cards
+  count = count > freeCells ? freeCells : count
   for (let i = 0; i < count; i++) {
     let cell = randCell()
-    while (!cell.locked) cell = randCell()
+    while (!cell.locked || cell.card) cell = randCell()
     cell.locked = true
   }
-  return [...grid]
+  return grid
 }
 
 export function addSuited(grid, count = 0) {
   const randCell = getGridRandomCell(grid)
+  const suited = countGridSuited(grid)
+  const locked = countGridLocked(grid)
+  const cells = grid.length * grid[0].length
+  const freeCells = cells - locked - suited
+  count = count > freeCells ? freeCells : count
   for (let i = 0; i < count; i++) {
     let cell = randCell()
-    while (cell.suit !== -1) cell = randCell()
+    while (cell.locked || cell.suit !== -1) cell = randCell()
     cell.suit = suits[getRandomInt(0, suits.length - 1)]
   }
-  return [...grid]
+  return grid
 }
 
 export function buildGrid({
