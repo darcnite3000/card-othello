@@ -81,7 +81,7 @@ export function buildGrid({
   defaultCell = { suit: -1, card: null, locked: false },
   locked = 0,
   suited = 0
-}) {
+} = {}) {
   let grid = []
   for (let y = 0; y < height; y++) {
     let row = []
