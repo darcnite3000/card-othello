@@ -1,8 +1,8 @@
 import { range } from '../lib/utils'
-import Heart from '../components/Heart'
-import Club from '../components/Club'
-import Diamond from '../components/Diamond'
-import Spade from '../components/Spade'
+import Heart from './Heart'
+import Club from './Club'
+import Diamond from './Diamond'
+import Spade from './Spade'
 
 export const suitFace = [Diamond, Club, Heart, Spade]
 export const cardInitial = {

@@ -1,5 +1,5 @@
 import { suits, values, minValue, maxValue } from './suits'
-import { getRandomInt } from './utils'
+import { getRandomInt } from '../lib/utils'
 
 export function getRandomPips(value) {
   const attacks =

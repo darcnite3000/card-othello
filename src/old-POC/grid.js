@@ -1,5 +1,5 @@
 import { maxValue, suits } from './suits'
-import { getRandomInt } from './utils'
+import { getRandomInt } from '../lib/utils'
 
 const pipRel = [
   { dx: -1, dy: -1 },
