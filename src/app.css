@@ -3,3 +3,15 @@
 *::after {
   box-sizing: border-box;
 }
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & nav {
+    display: flex;
+    & > * {
+      margin: 5px;
+    }
+  }
+}

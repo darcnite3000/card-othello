@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { Component } from 'react'
 import './app.css'
 
-function App() {
+function Game() {
+  return <div>Coming Soon</div>
+}
+
+function Rules() {
   return (
-    <Fragment>
-      <h1>Card Othello</h1>
-      <a href={'https://github.com/darcnite3000/card-othello'}>
-        Source on GitHub
-      </a>
+    <div>
       <h3>Game Setup:</h3>
       <ul>
         <li>Determine Starting Player</li>
@@ -72,8 +72,44 @@ function App() {
       <p>The game ends after three rounds</p>
       <h5>Winner</h5>
       <p>Winning is based on Score + Round Win tokens * 4</p>
-    </Fragment>
+    </div>
   )
+}
+
+class App extends Component {
+  state = {
+    page: 'rules'
+  }
+  showRules = event => {
+    event.preventDefault()
+    this.setState({ page: 'rules' })
+  }
+  showGame = event => {
+    event.preventDefault()
+    this.setState({ page: 'game' })
+  }
+  render() {
+    return (
+      <div>
+        <header>
+          <h1>Card Othello</h1>
+          <nav>
+            <a href="#" onClick={this.showGame}>
+              Game
+            </a>
+            <a href="#" onClick={this.showRules}>
+              Rules
+            </a>
+            <a href={'https://github.com/darcnite3000/card-othello'}>
+              Source on GitHub
+            </a>
+          </nav>
+        </header>
+        {this.state.page === 'rules' && <Rules />}
+        {this.state.page === 'game' && <Game />}
+      </div>
+    )
+  }
 }
 
 export default App
