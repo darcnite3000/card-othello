@@ -1,4 +1,4 @@
 module.exports = () => ({
-  entry: './src/index.jsx',
+  entry: './src/index.js',
   publicPath: '/card-othello/'
 })
