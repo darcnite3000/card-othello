@@ -8,6 +8,7 @@
   "plugins": ["react"],
   "parser": "babel-eslint",
   "env": {
+    "jest": true,
     "es6": true,
     "node": true
   },
