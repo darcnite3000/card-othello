@@ -11,7 +11,7 @@ function Rules() {
       <h3>Game Setup:</h3>
       <ul>
         <li>Determine Starting Player</li>
-        <li>Choose 24 cards for each player and 2 suite tokens</li>
+        <li>Choose 24 cards for each player and 2 suit tokens</li>
         <li>Assign Pip Pools, each player gets 15 5pt, 15 3pt and 15 2pt</li>
         <li>Shuffle player decks</li>
       </ul>
@@ -31,11 +31,11 @@ function Rules() {
       <ol>
         <li>Place a card in an empty grid cell</li>
         <li>
-          If there is a suite token on the cell of the same type, increase the
+          If there is a suit token on the cell of the same type, increase the
           Attack Pips Powers by 1
         </li>
         <li>
-          If there is a suite token on the cell of another type, decrease the
+          If there is a suit token on the cell of another type, decrease the
           Attack Pips Powers by 1
         </li>
         <li>
@@ -64,7 +64,7 @@ function Rules() {
         <li>Controlled Cards are counted and added to score</li>
         <li>Player with the most Controlled Cards earns a Round Win token</li>
         <li>Hands are discarded</li>
-        <li>Used Suite Tokens are discarded</li>
+        <li>Used Suit Tokens are discarded</li>
         <li>Starting Player is incremented</li>
       </ol>
 
